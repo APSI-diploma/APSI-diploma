@@ -8,7 +8,7 @@ python3 manage.py runserver
 
 Aplikacja dostępna jest w przeglądarce pod adresem: localhost:8000
 
-#Zakładki
+# Zakładki
 
 ### /admin
 
