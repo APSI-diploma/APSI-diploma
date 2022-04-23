@@ -1,28 +1,23 @@
-# Uruchamianie
+# APSI-Diploma
+
+Moduł do dyplomowania w ramach uczelni
+
+## Instalacja zależności
+
+```bash
+pip3 install -r requirements.txt
+```
+
+## Uruchamianie
 
 Aplikację uruchamia się poprzez:
 
 ```bash
-python3 manage.py runserver
+python3 apsi_diploma/manage.py runserver
 ```
 
-Aplikacja dostępna jest w przeglądarce pod adresem: localhost:8000
-
-# Zakładki
-
-### /admin
-
-Panel administratorski
-
-### /polls
-
-Przykładowa aplikacja ankietowa
-
-### Dodanie nowej zakładki
-
-W celu dodania nowej zakładki należy wykonać  komendę:
+Do poprawnego wypełnienia bazy danych potrzebne może być jeszcze uruchomienie migracji:
 
 ```bash
-python3 manage.py startapp polls
+python3 apsi_diploma/manage.py migrate
 ```
-Wygenerowaną aplikację należy skonfigurować analogicznie do przykładu "polls".
