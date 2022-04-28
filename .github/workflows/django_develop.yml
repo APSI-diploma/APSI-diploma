@@ -45,6 +45,7 @@ jobs:
         git commit -am "fixup: Format Python code with Black"
         git push
     - name: Lint with Flake8
+      if: always()
       run: |
         flake8 .
       continue-on-error: true
