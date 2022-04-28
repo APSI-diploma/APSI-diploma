@@ -20,13 +20,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Heroku Django Deploy
-      # You may pin to the exact commit or the version.
-      # uses: nyakaz73/heroku-django-deploy@1a0bce1d14e7185e5a514dc55dcaf632b0288014
-      uses: nyakaz73/heroku-django-deploy@v0.81
-      with:
-        heroku_app_name: "apsi-dyplomowanie"
-        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_email_address: "michallatkos@gmail.com"
-        use_git: true
-        git_branch: master
+      - name: Deploying to Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          APP: "apsi_dyplomowanie"
+        run: |
+          git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/$APP.git
+          git push heroku HEAD:master -f
