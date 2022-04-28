@@ -27,7 +27,7 @@ jobs:
       - name: Deploying to Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          APP: "apsi_dyplomowanie"
+          APP: "apsi-dyplomowanie"
         run: |
           git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/$APP.git
           git push heroku HEAD:master -f
