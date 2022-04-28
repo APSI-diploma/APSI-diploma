@@ -20,6 +20,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Checkout Repo v2
+        uses: actions/checkout@v2
+      - name: Git fetch
+        run: git fetch --prune --unshallow
       - name: Deploying to Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
