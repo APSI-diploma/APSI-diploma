@@ -43,7 +43,7 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
         git checkout $GITHUB_HEAD_REF
         git commit -am "fixup: Format Python code with Black"
-        git push
+        git push --force
     - name: Lint with Flake8
       run: |
         flake8 .
