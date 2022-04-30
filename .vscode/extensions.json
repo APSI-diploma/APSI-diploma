@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "visualstudioexptteam.vscodeintellicode",
+        "ms-vscode-remote.vscode-remote-extensionpack",
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        "batisteo.vscode-django",
+        "thebarkman.vscode-djaneiro",
+        "bibhasdn.django-snippets",
+    ]
+}
