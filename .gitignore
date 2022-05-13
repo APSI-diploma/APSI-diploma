@@ -266,3 +266,5 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+/apsi_diploma/staticfiles/
+/.idea/
