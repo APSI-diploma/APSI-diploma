@@ -83,6 +83,27 @@ DATABASES = {
     }
 }
 
+# ACCOUNT-related settings
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+
+AUTH_USER_MODEL = "auth.User"
+LOGIN_URL = "/login"
+
+# configs from https://django-allauth.readthedocs.io/en/latest/configuration.html#configuration
+SITE_ID = 1
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_MAX_EMAIL_ADDRESSES = 2
+
+ACCOUNT_LOGOUT_ON_GET = True
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
