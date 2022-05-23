@@ -1,2 +1,6 @@
 Django
+psycopg2-binary
+whitenoise
+gunicorn
+django-on-heroku
 flake8
