@@ -24,5 +24,5 @@ urlpatterns = [
     path("signup/", authview.signup, name="account_signup"),
     path("login/", authview.login, name="account_login"),
     path("logout/", authview.logout, name="account_logout"),
-    path('', include('diploma_app.urls')),
+    path("", include("diploma_app.urls")),
 ]

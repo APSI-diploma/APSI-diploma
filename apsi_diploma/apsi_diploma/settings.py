@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 
-#FIX for https://github.com/doableware/djongo/issues/608
+# FIX for https://github.com/doableware/djongo/issues/608
 from djongo.operations import DatabaseOperations
 
 
@@ -22,7 +22,7 @@ def conditional_expression_supported_in_where_clause(self, expression):
 DatabaseOperations.conditional_expression_supported_in_where_clause = (
     conditional_expression_supported_in_where_clause
 )
-#END of FIX
+# END of FIX
 
 import django_on_heroku
 
