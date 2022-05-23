@@ -24,10 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_APSI_DIPLOMA_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 if os.environ.get("IS_HEROKU_PRODUCTION"):
     DEBUG = False
 else:
     DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["apsi-dyplomowanie.herokuapp.com"]
 
