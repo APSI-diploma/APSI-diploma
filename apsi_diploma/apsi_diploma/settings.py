@@ -29,7 +29,6 @@ if os.environ.get("IS_HEROKU_PRODUCTION"):
     DEBUG = False
 else:
     DEBUG = True
-DEBUG = False
 
 ALLOWED_HOSTS = ["apsi-dyplomowanie.herokuapp.com"]
 
