@@ -16,6 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+
+from allauth.account import views as authview
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("signup/", authview.signup, name="account_signup"),
+    path("login/", authview.login, name="account_login"),
+    path("logout/", authview.logout, name="account_logout"),
+    path("", include("diploma_app.urls")),
 ]
