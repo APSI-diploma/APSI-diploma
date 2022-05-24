@@ -1,0 +1,23 @@
+{% extends "diploma_app/base.html" %}
+
+{% load i18n %}
+
+
+{% block head_title %}CREATE{% endblock %}
+
+{% block content %}
+
+Hello World_Create
+
+    <form method="post" enctype="multipart/form-data" > 
+    {% csrf_token %} 
+    Imię i nazwisko promotora
+       <input type="text" name="promoter_name"> 
+       Temat pracy
+       <input type="text" name="paper_title"> 
+        <input type="submit" value="ok"> 
+    </form> 
+
+{% endblock %}
+
+
