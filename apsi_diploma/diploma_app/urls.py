@@ -2,4 +2,7 @@ from django.urls import include, path
 
 from . import views
 
-urlpatterns = [path("", views.home_page, name="home")]
+urlpatterns = [
+    path("", views.home_page, name="home"),
+    path("review/", views.review_page, name="review"),
+]
