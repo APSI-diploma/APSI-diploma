@@ -21,3 +21,5 @@ Do poprawnego wypełnienia bazy danych potrzebne może być jeszcze uruchomienie
 ```bash
 python3 apsi_diploma/manage.py migrate
 ```
+
+## Użytkownicy posiadający w loginie "PRO" są promotorami
