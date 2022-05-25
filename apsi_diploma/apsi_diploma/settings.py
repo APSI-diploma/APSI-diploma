@@ -35,6 +35,10 @@ ALLOWED_HOSTS = ["apsi-dyplomowanie.herokuapp.com"]
 # Application definition
 
 INSTALLED_APPS = [
+    "material",
+    "material.frontend",
+    "viewflow",
+    "viewflow.frontend",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -75,15 +79,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "apsi_diploma.wsgi.application"
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "djongo",
+#         "CLIENT": {
+#             "host": os.environ.get("MONGODB_URI"),
+#             "authMechanism": "SCRAM-SHA-1",
+#         },
+#     }
+# }
+
 DATABASES = {
     "default": {
-        "ENGINE": "djongo",
-        "CLIENT": {
-            "host": os.environ.get("MONGODB_URI"),
-            "authMechanism": "SCRAM-SHA-1",
-        },
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
