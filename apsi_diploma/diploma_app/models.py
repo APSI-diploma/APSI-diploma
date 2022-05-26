@@ -11,6 +11,9 @@ class User(models.Model):
     username = models.CharField(max_length=128, unique=True, primary_key=True)
     user_type = models.IntegerField(choices=UserType.choices)
     state = models.IntegerField()
+    name = models.CharField(max_length=128)
+    surname = models.CharField(max_length=128)
+    academic_title = models.CharField(max_length=50)
 
 
 class Paper(models.Model):

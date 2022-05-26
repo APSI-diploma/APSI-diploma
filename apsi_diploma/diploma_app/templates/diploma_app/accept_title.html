@@ -1,0 +1,22 @@
+{% extends "diploma_app/base.html" %}
+
+{% load i18n %}
+
+
+{% block head_title %}CREATE{% endblock %}
+
+{% block content %}
+
+Akceptacja
+
+    <form method="post" enctype="multipart/form-data" > 
+    {% csrf_token %} 
+        <input type="text" name="username"> 
+        <input type="text" name="paper_title">
+        <input type="text" name="accept_text">
+        <input type="submit" value="ok"> 
+    </form> 
+
+{% endblock %}
+
+
