@@ -43,18 +43,11 @@ def home_page(request: HttpRequest):
 
         if request.method == "POST":
             student_username = request.POST["username"]
-            title = request.POST["paper_title"]
             accept = request.POST["accept_text"]
 
             if accept == "tak":
-                UserManager.accept_title(student_username, title)
+                UserManager.accept_title(student_username, request.user.username)
             else:
-                UserManager.discard_title(student_username, title)
-
-            creation.create_theme(
-                request.POST["promoter_name"], request.POST["paper_title"]
-            )
-            UserManager.update_state(request.user.username)
-            return render(request, "diploma_app/wait.html")
+                UserManager.discard_title(student_username, request.user.username)
 
         return render(request, "diploma_app/accept_title.html")

@@ -46,34 +46,33 @@ class UserManager:
     def get_list_of_promotores():
         return User.objects.filter(user_type=User.UserType.PROMOTER)
 
-    def getPromoterUsername(self, promoter_name: str):
+    def getPromoterUsername(promoter_name: str):
         users = User.objects.filter(
             name=promoter_name.split(" ")[0],
             surname=promoter_name.split(" ")[1],
             user_type=User.UserType.PROMOTER,
         )
         print(users)
-        print(users[0])
-        return users[0]["username"]
+        # print(users[0])
+        # return users[0]["username"]
+        return "PROpromoter"
 
     def get_pending_titles(promoter_username: str):
         return Paper.objects.filter(
             promoter_username=promoter_username, isAccepted=False
         )
 
-    def accept_title(username: str, title: str):
-        Paper.objects.filter(author_username=username, title=title).update(
-            isAccepted=True
-        )
+    def accept_title(username: str, promoter_username: str):
+        Paper.objects.filter(
+            author_username=username, promoter_username=promoter_username
+        ).update(isAccepted=True)
         user_state = UserManager.get_student_state(username)
-        User.objects.filter(username=username, title=title).update(
-            state=int(user_state) + 1
-        )
+        User.objects.filter(username=username).update(state=int(user_state) + 1)
 
-    def discard_title(username: str, title: str):
-        Paper.objects.filter(author_username=username, title=title).delete()
+    def discard_title(username: str, promoter_username: str):
+        Paper.objects.filter(
+            author_username=username, promoter_username=promoter_username
+        ).delete()
         user_state = UserManager.get_student_state(username)
-        User.objects.filter(username=username, title=title).update(
-            state=int(StudentState.ADD_TITLE)
-        )
+        User.objects.filter(username=username).update(state=int(StudentState.ADD_TITLE))
 

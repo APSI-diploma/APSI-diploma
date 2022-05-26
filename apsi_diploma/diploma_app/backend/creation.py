@@ -1,3 +1,4 @@
+from .user_manager import UserManager
 from ..models import Paper, User
 
 
@@ -9,7 +10,7 @@ class Creation:
 
     def create_theme(self, promoter: str, title: str):
         Paper.objects.create(
-            promoter_username=self.getPromoterUsername(promoter_name=promoter),
+            promoter_username=UserManager.getPromoterUsername(promoter_name=promoter),
             author_username=self.username,
             title=title,
         )

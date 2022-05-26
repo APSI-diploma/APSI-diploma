@@ -10,9 +10,12 @@
 Akceptacja
 
     <form method="post" enctype="multipart/form-data" > 
-    {% csrf_token %} 
+    {% csrf_token %}
+        Nazwa użytkownika studenta
         <input type="text" name="username"> 
-        <input type="text" name="paper_title">
+        {% comment %} Tytuł paracy
+        <input type="text" name="paper_title"> {% endcomment %}
+        czy akceptujesz - tak/nie
         <input type="text" name="accept_text">
         <input type="submit" value="ok"> 
     </form> 
