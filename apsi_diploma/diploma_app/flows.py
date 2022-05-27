@@ -11,19 +11,27 @@ class ScientificPublishingFlow(Flow):
     start = (
         flow.Start(CreateProcessView, task_title="Add scientific paper")
         .Permission(
-            auto_create=True        # uzytkownik musi miec can_start_scientificpublishingprocess, view_scientificpublishingprocess
+            auto_create=True  # uzytkownik musi miec can_start_scientificpublishingprocess, view_scientificpublishingprocess
         )
         .Next(this.upload)
     )
 
     upload = (
-        flow.View(UpdateProcessView, fields=["title", "description", "file"], task_title="Upload scientific paper")
+        flow.View(
+            UpdateProcessView,
+            fields=["title", "description", "file"],
+            task_title="Upload scientific paper",
+        )
         .Assign(this.start.owner)
         .Next(this.categorize)
     )
 
     categorize = (
-        flow.View(UpdateProcessView, fields=["paper_type"], task_title="Categorize scientific paper")
+        flow.View(
+            UpdateProcessView,
+            fields=["paper_type"],
+            task_title="Categorize scientific paper",
+        )
         .Assign(this.start.owner)
         .Next(this.end)
     )
@@ -43,9 +51,30 @@ class DissertationFlow(Flow):
     )
 
     choose_supervisor_and_topic = (
-        flow.View(UpdateProcessView, fields=["supervisor", "topic_title", "topic_description"], task_title="Choose topic of dissertation and supervisor")
+        flow.View(
+            UpdateProcessView,
+            fields=["supervisor", "topic_title", "topic_description"],
+            task_title="Choose topic of dissertation and supervisor",
+        )
         .Assign(this.start.owner)
-        .Next(this.topic_approve)
+        .Next(this.can_be_supervisor)
+    )
+
+    can_be_supervisor = (
+        flow.If(lambda act: (act.process.supervisor == act.process.created_by))
+        .Then(this.choose_supervisor_and_topic_again)
+        .Else(this.topic_approve)
+    )
+
+    choose_supervisor_and_topic_again = (
+        flow.View(
+            UpdateProcessView,
+            fields=["supervisor", "topic_title", "topic_description"],
+            task_title="Choose topic of dissertation and supervisor",
+            task_description="Chosen supervisor cannot supervise the dissertation process. Please choose again.",
+        )
+        .Assign(this.start.owner)
+        .Next(this.can_be_supervisor)
     )
 
     topic_approve = (
@@ -90,6 +119,27 @@ class DissertationFlow(Flow):
         .Next(this.supervisor_review)
     )
 
+    can_be_reviewer = (
+        flow.If(
+            lambda act: (
+                act.process.reviewer == act.process.created_by
+                or act.process.supervisor == act.process.reviewer
+            )
+        )
+        .Then(this.choose_reviewer_again)
+        .Else(this.supervisor_review)
+    )
+
+    choose_reviewer_again = (
+        flow.View(
+            UpdateProcessView,
+            fields=["reviewer"],
+            task_description="Chosen reviewer cannot review the dissertation process. Please choose again.",
+        )
+        .Permission(auto_create=True)
+        .Next(this.supervisor_review)
+    )
+
     supervisor_review = (
         flow.View(UpdateProcessView, fields=["supervisor_review"])
         .Assign(lambda act: act.process.supervisor)
@@ -107,7 +157,33 @@ class DissertationFlow(Flow):
             UpdateProcessView, fields=["exam_date", "comitee_chair", "comitee_member"]
         )
         .Permission(auto_create=True)
-        .Next(this.add_exam_results)
+        .Next(this.check_exam_details)
+    )
+
+    check_exam_details = (
+        flow.If(
+            lambda act: (
+                act.process.comitee_chair == act.process.created_by
+                or act.process.comitee_chair == act.process.reviewer
+                or act.process.comitee_chair == act.process.supervisor
+                or act.process.comitee_chair == act.process.comitee_member
+                or act.process.comitee_member == act.process.created_by
+                or act.process.comitee_member == act.process.supervisor
+                or act.process.comitee_member == act.process.reviewer
+            )
+        )
+        .Then(this.add_exam_details_again)
+        .Else(this.add_exam_results)
+    )
+
+    add_exam_details_again = (
+        flow.View(
+            UpdateProcessView,
+            fields=["exam_date", "comitee_chair", "comitee_member"],
+            task_description="Chosen comitee is not allowed in dissertation process. Please choose again.",
+        )
+        .Permission(auto_create=True)
+        .Next(this.check_exam_details)
     )
 
     add_exam_results = (
