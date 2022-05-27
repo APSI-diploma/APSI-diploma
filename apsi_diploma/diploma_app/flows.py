@@ -9,26 +9,22 @@ class ScientificPublishingFlow(Flow):
     process_class = ScientificPublishingProcess
 
     start = (
-        flow.Start(CreateProcessView)
+        flow.Start(CreateProcessView, task_title="Add scientific paper")
         .Permission(
-            auto_create=True  # tworzy permission diploma_app.can_start_scientificpublishingprocess
+            auto_create=True        # uzytkownik musi miec can_start_scientificpublishingprocess, view_scientificpublishingprocess
         )
         .Next(this.upload)
     )
 
     upload = (
-        flow.View(UpdateProcessView, fields=["title", "description", "file"])
-        .Permission(
-            auto_create=True  # tworzy permission diploma_app.can_start_scientificpublishingprocess
-        )
+        flow.View(UpdateProcessView, fields=["title", "description", "file"], task_title="Upload scientific paper")
+        .Assign(this.start.owner)
         .Next(this.categorize)
     )
 
     categorize = (
-        flow.View(UpdateProcessView, fields=["paper_type"])
-        .Permission(
-            auto_create=True  # tworzy permission diploma_app.can_categorize_scientificpublishingprocess
-        )
+        flow.View(UpdateProcessView, fields=["paper_type"], task_title="Categorize scientific paper")
+        .Assign(this.start.owner)
         .Next(this.end)
     )
 
@@ -41,44 +37,38 @@ class DissertationFlow(Flow):
     process_class = DissertationProcess
 
     start = (
-        flow.Start(CreateProcessView)
+        flow.Start(CreateProcessView, task_title="Start dissertation process")
         .Permission(auto_create=True)
-        .Next(this.choose_supervisor)
+        .Next(this.choose_supervisor_and_topic)
     )
 
-    choose_supervisor = (
-        flow.View(UpdateProcessView, fields=["supervisor"])
-        .Permission(auto_create=True)
-        .Next(this.upload_topic)
-    )
-
-    upload_topic = (
-        flow.View(UpdateProcessView, fields=["topic_title", "topic_description"])
-        .Permission(auto_create=True)
+    choose_supervisor_and_topic = (
+        flow.View(UpdateProcessView, fields=["supervisor", "topic_title", "topic_description"], task_title="Choose topic of dissertation and supervisor")
+        .Assign(this.start.owner)
         .Next(this.topic_approve)
     )
 
     topic_approve = (
         flow.View(UpdateProcessView, fields=["topic_approved"])
-        .Permission(auto_create=True)
+        .Assign(lambda act: act.process.supervisor)
         .Next(this.check_acceptance)
     )
 
     check_acceptance = (
         flow.If(lambda activation: activation.process.topic_approved)
         .Then(this.upload_dissertation)
-        .Else(this.choose_supervisor)
+        .Else(this.choose_supervisor_and_topic)
     )
 
     upload_dissertation = (
         flow.View(UpdateProcessView, fields=["dissertation_file"])
-        .Permission(auto_create=True)
+        .Assign(this.start.owner)
         .Next(this.antiplagiat_control)
     )
 
     antiplagiat_control = (
         flow.View(UpdateProcessView, fields=["dissertation_accepted"])
-        .Permission(auto_create=True)
+        .Assign(lambda act: act.process.supervisor)
         .Next(this.check_antiplagiat)
     )
 
@@ -90,19 +80,25 @@ class DissertationFlow(Flow):
 
     categorize = (
         flow.View(UpdateProcessView, fields=["paper_type"])
+        .Assign(this.start.owner)
+        .Next(this.choose_reviewer)
+    )
+
+    choose_reviewer = (
+        flow.View(UpdateProcessView, fields=["reviewer"])
         .Permission(auto_create=True)
         .Next(this.supervisor_review)
     )
 
     supervisor_review = (
         flow.View(UpdateProcessView, fields=["supervisor_review"])
-        .Permission(auto_create=True)
+        .Assign(lambda act: act.process.supervisor)
         .Next(this.reviewer_review)
     )
 
     reviewer_review = (
-        flow.View(UpdateProcessView, fields=["reviewer", "reviewer_revier"])
-        .Permission(auto_create=True)
+        flow.View(UpdateProcessView, fields=["reviewer", "reviewer_review"])
+        .Assign(lambda act: act.process.reviewer)
         .Next(this.add_exam_details)
     )
 

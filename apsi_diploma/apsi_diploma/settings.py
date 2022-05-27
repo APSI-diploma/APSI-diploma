@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ["apsi-dyplomowanie.herokuapp.com"]
 INSTALLED_APPS = [
     "material",
     "material.frontend",
+    "material.admin",
     "viewflow",
     "viewflow.frontend",
     "django.contrib.admin",

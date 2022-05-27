@@ -1,29 +1,19 @@
 from django.db import models
 from viewflow.models import Process
+from django.conf import settings
 import datetime
 
 
-class Employee(models.Model):
-    first_name = models.CharField(max_length=30)
-    second_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-
-
-class PaperType(models.Model):
-    BACHELOR_OF_SCIENCE = "BS"
-    MASTERS = "M"
-    DOCTORAL = "D"
-    SCIENTIFIC = "S"
-    PAPER_TYPE_CHOICES = [
-        (BACHELOR_OF_SCIENCE, "Bachelor of Science dissertation"),
-        (MASTERS, "Master's dissertation"),
-        (DOCTORAL, "Doctoral dissertation"),
-        (SCIENTIFIC, "Scientific paper"),
-    ]
-    paper_type = models.CharField(
-        max_length=2,
-        choices=PAPER_TYPE_CHOICES,
-    )
+BACHELOR_OF_SCIENCE = "BS"
+MASTERS = "M"
+DOCTORAL = "D"
+SCIENTIFIC = "S"
+PAPER_TYPE_CHOICES = [
+    (BACHELOR_OF_SCIENCE, "Bachelor of Science dissertation"),
+    (MASTERS, "Master's dissertation"),
+    (DOCTORAL, "Doctoral dissertation"),
+    (SCIENTIFIC, "Scientific paper"),
+]
 
 
 class ScientificPublishingProcess(Process):
@@ -31,8 +21,9 @@ class ScientificPublishingProcess(Process):
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=5000)
     file = models.FileField()
-    paper_type = models.ForeignKey(
-        PaperType, on_delete=models.CASCADE, blank=True, null=True
+    paper_type = models.CharField(
+        max_length=2,
+        choices=PAPER_TYPE_CHOICES,
     )
     organizational_unit = models.CharField(max_length=256)
 
@@ -55,7 +46,7 @@ class DissertationProcess(Process):
     )
 
     supervisor = models.ForeignKey(
-        Employee,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="supervisor",
         blank=True,
@@ -66,10 +57,13 @@ class DissertationProcess(Process):
     topic_approved = models.BooleanField(default=False)
     dissertation_file = models.FileField()
     dissertation_accepted = models.BooleanField(default=False)
-    paper_type = models.ForeignKey(PaperType, on_delete=models.CASCADE)
+    paper_type = models.CharField(
+        max_length=2,
+        choices=PAPER_TYPE_CHOICES,
+    )
     supervisor_review = models.FileField()
     reviewer = models.ForeignKey(
-        Employee,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="reviewer",
         blank=True,
@@ -78,14 +72,14 @@ class DissertationProcess(Process):
     reviewer_review = models.FileField()
     exam_date = models.DateField(default=datetime.date.today)
     comitee_chair = models.ForeignKey(
-        Employee,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="comitee_chair",
         blank=True,
         null=True,
     )
     comitee_member = models.ForeignKey(
-        Employee,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="comitee_member",
         blank=True,
