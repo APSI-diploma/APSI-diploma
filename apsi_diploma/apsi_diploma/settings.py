@@ -10,32 +10,24 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
-
-# FIX for https://github.com/doableware/djongo/issues/608
-from djongo.operations import DatabaseOperations
-
-
-def conditional_expression_supported_in_where_clause(self, expression):
-    return False
-
-
-DatabaseOperations.conditional_expression_supported_in_where_clause = (
-    conditional_expression_supported_in_where_clause
-)
-# END of FIX
-
 import django_on_heroku
+import dj_database_url
+import dotenv
 
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("DJANGO_APSI_DIPLOMA_SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -76,7 +68,7 @@ ROOT_URLCONF = "apsi_diploma.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "diploma_app" / "templates"],
+        "DIRS": [f"BASE_DIR/diploma_app/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -91,15 +83,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "apsi_diploma.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "djongo",
-        "CLIENT": {
-            "host": os.environ.get("MONGODB_URI"),
-            "authMechanism": "SCRAM-SHA-1",
-        },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.environ.get("APSI_NAME"),
+#         'USER': os.environ.get("APSI_USER"),
+#         'PASSWORD': os.environ.get("APSI_PASSWORD"),
+#         'HOST': os.environ.get("APSI_HOST"),
+#         'PORT': os.environ.get("APSI_PORT")
+#     }
+# }
+
+DATABASES = {'default': dj_database_url.config(default='sqlite:///db.sqlite3',conn_max_age=600)}
 
 # ACCOUNT-related settings
 
@@ -158,6 +153,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = "/static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -166,3 +162,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Note: This settings needs to stay at the bottom, that is how it works
 django_on_heroku.settings(locals())
+
+options = DATABASES['default'].get('OPTIONS', {})
+options.pop('sslmode', None)
