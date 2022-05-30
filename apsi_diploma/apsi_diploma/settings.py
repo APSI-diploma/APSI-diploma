@@ -94,7 +94,9 @@ WSGI_APPLICATION = "apsi_diploma.wsgi.application"
 #     }
 # }
 
-DATABASES = {'default': dj_database_url.config(default='sqlite:///db.sqlite3',conn_max_age=600)}
+DATABASES = {
+    "default": dj_database_url.config(default="sqlite:///db.sqlite3", conn_max_age=600)
+}
 
 # ACCOUNT-related settings
 
@@ -153,7 +155,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = "/static/"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -163,5 +165,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Note: This settings needs to stay at the bottom, that is how it works
 django_on_heroku.settings(locals())
 
-options = DATABASES['default'].get('OPTIONS', {})
-options.pop('sslmode', None)
+options = DATABASES["default"].get("OPTIONS", {})
+options.pop("sslmode", None)
