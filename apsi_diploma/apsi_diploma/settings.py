@@ -80,16 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "apsi_diploma.wsgi.application"
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "djongo",
-#         "CLIENT": {
-#             "host": os.environ.get("MONGODB_URI"),
-#             "authMechanism": "SCRAM-SHA-1",
-#         },
-#     }
-# }
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
