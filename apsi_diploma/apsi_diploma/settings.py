@@ -10,6 +10,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
+
+# FIX for https://github.com/doableware/djongo/issues/608
+from djongo.operations import DatabaseOperations
+
+
+def conditional_expression_supported_in_where_clause(self, expression):
+    return False
+
+
+DatabaseOperations.conditional_expression_supported_in_where_clause = (
+    conditional_expression_supported_in_where_clause
+)
+# END of FIX
+
 import django_on_heroku
 
 from pathlib import Path
@@ -46,6 +60,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "allauth",
+    "allauth.account",
     "diploma_app",
 ]
 
@@ -65,7 +81,7 @@ ROOT_URLCONF = "apsi_diploma.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "diploma_app" / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -87,6 +103,27 @@ DATABASES = {
     }
 }
 
+# ACCOUNT-related settings
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+
+AUTH_USER_MODEL = "auth.User"
+LOGIN_URL = "/login"
+
+# configs from https://django-allauth.readthedocs.io/en/latest/configuration.html#configuration
+SITE_ID = 1
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_MAX_EMAIL_ADDRESSES = 2
+
+ACCOUNT_LOGOUT_ON_GET = True
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

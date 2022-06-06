@@ -18,6 +18,9 @@ from django.urls import include, path
 from django.views import generic
 from material.frontend import urls as frontend_urls
 
+
+from allauth.account import views as authview
+
 urlpatterns = [
     path(r"django/admin/", admin.site.urls),
     path(
@@ -25,4 +28,9 @@ urlpatterns = [
         generic.RedirectView.as_view(url="/workflow/", permanent=False),
     ),
     path(r"", include(frontend_urls)),
+    path("admin/", admin.site.urls),
+    path("signup/", authview.signup, name="account_signup"),
+    path("login/", authview.login, name="account_login"),
+    path("logout/", authview.logout, name="account_logout"),
+    path("", include("diploma_app.urls")),
 ]
