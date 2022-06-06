@@ -49,6 +49,11 @@ ALLOWED_HOSTS = ["apsi-dyplomowanie.herokuapp.com"]
 # Application definition
 
 INSTALLED_APPS = [
+    "material",
+    "material.frontend",
+    "material.admin",
+    "viewflow",
+    "viewflow.frontend",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -93,11 +98,8 @@ WSGI_APPLICATION = "apsi_diploma.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "djongo",
-        "CLIENT": {
-            "host": os.environ.get("MONGODB_URI"),
-            "authMechanism": "SCRAM-SHA-1",
-        },
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
