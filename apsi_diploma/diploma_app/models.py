@@ -21,10 +21,7 @@ class ScientificPublishingProcess(Process):
     title = models.TextField(max_length=500)
     description = models.TextField(max_length=5000)
     file = models.FileField()
-    paper_type = models.CharField(
-        max_length=2,
-        choices=PAPER_TYPE_CHOICES,
-    )
+    paper_type = models.CharField(max_length=2, choices=PAPER_TYPE_CHOICES)
     organizational_unit = models.CharField(max_length=255)
 
 
@@ -60,15 +57,12 @@ class DissertationProcess(Process):
     )
     dissertation_file = models.FileField()
     dissertation_accepted = models.BooleanField(default=False)
-    antiplagiat_report = models.FileField()
+    antiplagiat_report = models.TextField(max_length=5000, default="Pusty raport")
     antiplagiat_report_summary = models.TextField(
         max_length=5000, default="Nie ma nic do poprawki."
     )
-    paper_type = models.CharField(
-        max_length=2,
-        choices=PAPER_TYPE_CHOICES,
-    )
-    keywords = models.TextField(max_length=5000)
+    paper_type = models.CharField(max_length=2, choices=PAPER_TYPE_CHOICES)
+    keywords = models.TextField(max_length=5000, default="")
     supervisor_review = models.TextField()
     reviewer = models.ForeignKey(
         settings.AUTH_USER_MODEL,
