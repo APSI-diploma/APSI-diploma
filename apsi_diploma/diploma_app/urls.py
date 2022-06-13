@@ -1,9 +1,10 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
 
 
 urlpatterns = [
-    path("", views.repo, name="repo"),
-    path("self/", views.list, name="list"),
+    path("", views.home_page, name="home"),
+    path("repo/", views.repo, name="repo"),
+    path("repo/self/", views.list, name="list"),
 ]
 

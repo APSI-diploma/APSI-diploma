@@ -18,14 +18,14 @@ PAPER_TYPE_CHOICES = [
 
 class ScientificPublishingProcess(Process):
 
-    title = models.CharField(max_length=500)
-    description = models.CharField(max_length=5000)
+    title = models.TextField(max_length=500)
+    description = models.TextField(max_length=5000)
     file = models.FileField()
     paper_type = models.CharField(
         max_length=2,
         choices=PAPER_TYPE_CHOICES,
     )
-    organizational_unit = models.CharField(max_length=256)
+    organizational_unit = models.CharField(max_length=255)
 
 
 class DissertationProcess(Process):
@@ -52,16 +52,24 @@ class DissertationProcess(Process):
         blank=True,
         null=True,
     )
-    topic_title = models.CharField(max_length=500)
-    topic_description = models.CharField(max_length=5000)
+    topic_title = models.TextField(max_length=500)
+    topic_description = models.TextField(max_length=5000)
     topic_approved = models.BooleanField(default=False)
+    decision_explanation = models.TextField(
+        max_length=5000, default="Nie ma nic do poprawki"
+    )
     dissertation_file = models.FileField()
     dissertation_accepted = models.BooleanField(default=False)
+    antiplagiat_report = models.FileField()
+    antiplagiat_report_summary = models.TextField(
+        max_length=5000, default="Nie ma nic do poprawki."
+    )
     paper_type = models.CharField(
         max_length=2,
         choices=PAPER_TYPE_CHOICES,
     )
-    supervisor_review = models.FileField()
+    keywords = models.TextField(max_length=5000)
+    supervisor_review = models.TextField()
     reviewer = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -69,7 +77,7 @@ class DissertationProcess(Process):
         blank=True,
         null=True,
     )
-    reviewer_review = models.FileField()
+    reviewer_review = models.TextField()
     exam_date = models.DateField(default=datetime.date.today)
     comitee_chair = models.ForeignKey(
         settings.AUTH_USER_MODEL,

@@ -78,7 +78,7 @@ class DissertationFlow(Flow):
     )
 
     topic_approve = (
-        flow.View(UpdateProcessView, fields=["topic_approved"])
+        flow.View(UpdateProcessView, fields=["topic_approved", "decision_explanation"])
         .Assign(lambda act: act.process.supervisor)
         .Next(this.check_acceptance)
     )
@@ -96,7 +96,14 @@ class DissertationFlow(Flow):
     )
 
     antiplagiat_control = (
-        flow.View(UpdateProcessView, fields=["dissertation_accepted"])
+        flow.View(
+            UpdateProcessView,
+            fields=[
+                "dissertation_accepted",
+                "antiplagiat_report",
+                "antiplagiat_report_summary",
+            ],
+        )
         .Assign(lambda act: act.process.supervisor)
         .Next(this.check_antiplagiat)
     )
@@ -108,7 +115,7 @@ class DissertationFlow(Flow):
     )
 
     categorize = (
-        flow.View(UpdateProcessView, fields=["paper_type"])
+        flow.View(UpdateProcessView, fields=["paper_type", "keywords"])
         .Assign(this.start.owner)
         .Next(this.choose_reviewer)
     )
