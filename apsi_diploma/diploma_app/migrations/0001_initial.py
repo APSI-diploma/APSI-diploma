@@ -11,52 +11,151 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('viewflow', '0008_jsonfield_and_artifact'),
+        ("viewflow", "0008_jsonfield_and_artifact"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ScientificPublishingProcess',
+            name="ScientificPublishingProcess",
             fields=[
-                ('process_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='viewflow.process')),
-                ('title', models.TextField(max_length=500)),
-                ('description', models.TextField(max_length=5000)),
-                ('file', models.FileField(upload_to='')),
-                ('paper_type', models.CharField(choices=[('BS', 'Bachelor of Science dissertation'), ('M', "Master's dissertation"), ('D', 'Doctoral dissertation'), ('S', 'Scientific paper')], max_length=2)),
-                ('organizational_unit', models.CharField(max_length=255)),
+                (
+                    "process_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="viewflow.process",
+                    ),
+                ),
+                ("title", models.TextField(max_length=500)),
+                ("description", models.TextField(max_length=5000)),
+                ("file", models.FileField(upload_to="")),
+                (
+                    "paper_type",
+                    models.CharField(
+                        choices=[
+                            ("BS", "Bachelor of Science dissertation"),
+                            ("M", "Master's dissertation"),
+                            ("D", "Doctoral dissertation"),
+                            ("S", "Scientific paper"),
+                        ],
+                        max_length=2,
+                    ),
+                ),
+                ("organizational_unit", models.CharField(max_length=255)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('viewflow.process',),
+            bases=("viewflow.process",),
         ),
         migrations.CreateModel(
-            name='DissertationProcess',
+            name="DissertationProcess",
             fields=[
-                ('process_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='viewflow.process')),
-                ('topic_title', models.TextField(max_length=500)),
-                ('topic_description', models.TextField(max_length=5000)),
-                ('topic_approved', models.BooleanField(default=False)),
-                ('decision_explanation', models.TextField(default='Nie ma nic do poprawki', max_length=5000)),
-                ('dissertation_file', models.FileField(upload_to='')),
-                ('dissertation_accepted', models.BooleanField(default=False)),
-                ('antiplagiat_report', models.FileField(upload_to='')),
-                ('antiplagiat_report_summary', models.TextField(default='Nie ma nic do poprawki.', max_length=5000)),
-                ('paper_type', models.CharField(choices=[('BS', 'Bachelor of Science dissertation'), ('M', "Master's dissertation"), ('D', 'Doctoral dissertation'), ('S', 'Scientific paper')], max_length=2)),
-                ('keywords', models.TextField(max_length=5000)),
-                ('supervisor_review', models.TextField()),
-                ('reviewer_review', models.TextField()),
-                ('exam_date', models.DateField(default=datetime.date.today)),
-                ('exam_grade', models.FloatField(choices=[(2.0, 'Unsatisfactory'), (3.0, 'Satisfactory'), (3.5, 'Satisfactory plus'), (4.0, 'Good'), (4.5, 'Good plus'), (5.0, 'Very good')], default=2.0)),
-                ('comitee_chair', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='comitee_chair', to=settings.AUTH_USER_MODEL)),
-                ('comitee_member', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='comitee_member', to=settings.AUTH_USER_MODEL)),
-                ('reviewer', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='reviewer', to=settings.AUTH_USER_MODEL)),
-                ('supervisor', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='supervisor', to=settings.AUTH_USER_MODEL)),
+                (
+                    "process_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="viewflow.process",
+                    ),
+                ),
+                ("topic_title", models.TextField(max_length=500)),
+                ("topic_description", models.TextField(max_length=5000)),
+                ("topic_approved", models.BooleanField(default=False)),
+                (
+                    "decision_explanation",
+                    models.TextField(default="Nie ma nic do poprawki", max_length=5000),
+                ),
+                ("dissertation_file", models.FileField(upload_to="")),
+                ("dissertation_accepted", models.BooleanField(default=False)),
+                ("antiplagiat_report", models.FileField(upload_to="")),
+                (
+                    "antiplagiat_report_summary",
+                    models.TextField(
+                        default="Nie ma nic do poprawki.", max_length=5000
+                    ),
+                ),
+                (
+                    "paper_type",
+                    models.CharField(
+                        choices=[
+                            ("BS", "Bachelor of Science dissertation"),
+                            ("M", "Master's dissertation"),
+                            ("D", "Doctoral dissertation"),
+                            ("S", "Scientific paper"),
+                        ],
+                        max_length=2,
+                    ),
+                ),
+                ("keywords", models.TextField(max_length=5000)),
+                ("supervisor_review", models.TextField()),
+                ("reviewer_review", models.TextField()),
+                ("exam_date", models.DateField(default=datetime.date.today)),
+                (
+                    "exam_grade",
+                    models.FloatField(
+                        choices=[
+                            (2.0, "Unsatisfactory"),
+                            (3.0, "Satisfactory"),
+                            (3.5, "Satisfactory plus"),
+                            (4.0, "Good"),
+                            (4.5, "Good plus"),
+                            (5.0, "Very good"),
+                        ],
+                        default=2.0,
+                    ),
+                ),
+                (
+                    "comitee_chair",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="comitee_chair",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "comitee_member",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="comitee_member",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "reviewer",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="reviewer",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "supervisor",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="supervisor",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('viewflow.process',),
+            bases=("viewflow.process",),
         ),
     ]
