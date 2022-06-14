@@ -21,3 +21,11 @@ Do poprawnego wypełnienia bazy danych potrzebne może być jeszcze uruchomienie
 ```bash
 python3 apsi_diploma/manage.py migrate
 ```
+
+Aby zainicjalizować użytkowników, grupy oraz uprawnienia należy uruchomić:
+
+```bash
+cp ./apsi_diploma/diploma_app/migrations/permission_migration/0002_create_groups.py  ./apsi_diploma/diploma_app/migrations
+python3 apsi_diploma/manage.py migrate
+rm ./apsi_diploma/diploma_app/migrations/0002_create_groups.py
+```
