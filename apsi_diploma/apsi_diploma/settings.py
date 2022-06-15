@@ -41,6 +41,11 @@ ALLOWED_HOSTS = ["apsi-dyplomowanie.herokuapp.com"]
 # Application definition
 
 INSTALLED_APPS = [
+    "material",
+    "material.frontend",
+    "material.admin",
+    "viewflow",
+    "viewflow.frontend",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -97,7 +102,6 @@ WSGI_APPLICATION = "apsi_diploma.wsgi.application"
 DATABASES = {
     "default": dj_database_url.config(default="sqlite:///db.sqlite3", conn_max_age=600)
 }
-
 # ACCOUNT-related settings
 
 AUTHENTICATION_BACKENDS = [
