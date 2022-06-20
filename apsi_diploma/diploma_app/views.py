@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 from .models import DissertationProcess
+import django_filters
 
 from allauth.account.decorators import login_required
 
@@ -21,14 +22,21 @@ def repo(request):
     if "title" in request.GET:
         processes = processes.filter(topic_title__contains=request.GET["title"])
 
+    if "exam_after" in request.GET:
+        processes = processes.filter(exam_date__gte=request.GET["exam_after"])
+
+    if "exam_before" in request.GET:
+        processes = processes.filter(exam_date__lte=request.GET["exam_before"])
+
     papers = []
     for process in processes:
         paper = {
+            "author": "autor pracy",  # TODO wyciągnąć autora
             "title": process.topic_title,
             "supervisor": process.supervisor.get_full_name(),
             "topic_description": process.topic_description,
             "paper_type": process.paper_type,
-            "exam_date": process.exam_date,
+            "exam_date": process.exam_date.strftime("%Y-%m-%d"),
             "exam_grade": process.exam_grade,
             "keywords": process.keywords,
         }
