@@ -55,4 +55,3 @@ def repo(request):
 @login_required(login_url="/login")
 def list(request):
     return HttpResponse("Hello, welcome to the list page.")
-
