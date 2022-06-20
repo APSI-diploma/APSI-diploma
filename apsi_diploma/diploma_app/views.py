@@ -13,6 +13,14 @@ def home_page(request: HttpRequest):
 def repo(request):
     processes = DissertationProcess.objects.filter(exam_grade__gte=3.0)
 
+    if "key_words" in request.GET:
+        keyords = request.GET["key_words"].split(",")
+        for keyword in keyords:
+            processes = processes.filter(keywords__contains=keyword)
+
+    if "title" in request.GET:
+        processes = processes.filter(topic_title__contains=request.GET["title"])
+
     papers = []
     for process in processes:
         paper = {
