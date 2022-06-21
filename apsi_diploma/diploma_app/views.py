@@ -15,8 +15,8 @@ def repo(request):
     processes = DissertationProcess.objects.filter(exam_grade__gte=3.0)
 
     if "key_words" in request.GET:
-        keyords = request.GET["key_words"].split(",")
-        for keyword in keyords:
+        keywords = request.GET["key_words"].split(",")
+        for keyword in keywords:
             processes = processes.filter(keywords__contains=keyword)
 
     if "title" in request.GET:

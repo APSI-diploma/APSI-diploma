@@ -28,3 +28,4 @@ whitenoise==6.1.0
 yarg==0.1.9
 django-material==1.10.0
 django-viewflow==1.11.0
+django-filter==22.1
