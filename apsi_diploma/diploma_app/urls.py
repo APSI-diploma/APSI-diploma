@@ -7,4 +7,3 @@ urlpatterns = [
     path("repo/", views.repo, name="repo"),
     path("repo/self/", views.list, name="list"),
 ]
-
