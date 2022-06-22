@@ -18,7 +18,6 @@ from django.urls import include, path
 from django.views import generic
 from material.frontend import urls as frontend_urls
 
-
 from allauth.account import views as authview
 
 urlpatterns = [
