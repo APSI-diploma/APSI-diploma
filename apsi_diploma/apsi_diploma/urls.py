@@ -25,6 +25,7 @@ urlpatterns = [
     path(
         r"accounts/profile/",
         generic.RedirectView.as_view(url="/workflow/", permanent=False),
+        name='home'
     ),
     path(r"", include(frontend_urls)),
     path("admin/", admin.site.urls),
@@ -32,4 +33,5 @@ urlpatterns = [
     path("login/", authview.login, name="account_login"),
     path("logout/", authview.logout, name="account_logout"),
     path("", include("diploma_app.urls")),
+    path("",generic.RedirectView.as_view(url="/accounts/login/", permanent=False), name='home_page')
 ]

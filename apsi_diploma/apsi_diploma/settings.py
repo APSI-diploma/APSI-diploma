@@ -114,7 +114,7 @@ AUTHENTICATION_BACKENDS = [
 
 
 AUTH_USER_MODEL = "auth.User"
-LOGIN_URL = "/login"
+LOGIN_URL = "/accounts/login"
 
 # configs from https://django-allauth.readthedocs.io/en/latest/configuration.html#configuration
 SITE_ID = 1
