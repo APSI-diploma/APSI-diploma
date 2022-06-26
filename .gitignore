@@ -60,7 +60,6 @@ coverage.xml
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-apsi_diploma/polls/migrations
 
 # Flask stuff:
 instance/
@@ -266,3 +265,5 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+/apsi_diploma/staticfiles/
+/.idea/
