@@ -31,10 +31,11 @@ SECRET_KEY = os.environ.get("DJANGO_APSI_DIPLOMA_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-if os.environ.get("IS_HEROKU_PRODUCTION"):
-    DEBUG = False
-else:
-    DEBUG = True
+# TEMPORARILY DISABLING
+# if os.environ.get("IS_HEROKU_PRODUCTION"):
+#     DEBUG = False
+# else:
+DEBUG = True
 
 ALLOWED_HOSTS = ["apsi-dyplomowanie.herokuapp.com"]
 
@@ -158,8 +159,8 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = "/static/"
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "diploma_app/static/"),)
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
