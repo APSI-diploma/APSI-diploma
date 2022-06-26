@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="300" height="176" xmlns="http://www.w3.org/2000/svg">
+  <path d="M122,284L60,297L258,301Z" stroke="#505050" stroke-width="1.51" style="fill: rgb(73, 0, 182);"/>
+  <path d="M207,-105L309,-78L400,-86Z" stroke="#7b7b7b" stroke-width="1.51" style="fill: rgb(94, 0, 235);"/>
+  <path d="M414,154L305,251L417,289Z" stroke="#4a4a4a" stroke-width="1.51" style="fill: rgb(28, 0, 69);"/>
+  <path d="M414,154L417,289L432,80Z" stroke="#4c4c4c" stroke-width="1.51" style="fill: rgb(28, 0, 69);"/>
+  <path d="M296,24L432,80L446,-14Z" stroke="#5e5e5e" stroke-width="1.51" style="fill: rgb(73, 0, 182);"/>
+  <path d="M400,-86L296,24L446,-14Z" stroke="#6a6a6a" stroke-width="1.51" style="fill: rgb(56, 0, 140);"/>
+  <path d="M432,80L417,289L446,-14Z" stroke="#4e4e4e" stroke-width="1.51" style="fill: rgb(12, 0, 31);"/>
+  <path d="M309,-78L296,24L400,-86Z" stroke="#717171" stroke-width="1.51" style="fill: rgb(94, 0, 235);"/>
+  <path d="M338,147L305,251L414,154Z" stroke="#4e4e4e" stroke-width="1.51" style="fill: rgb(42, 0, 105);"/>
+  <path d="M338,147L414,154L432,80Z" stroke="#4f4f4f" stroke-width="1.51" style="fill: rgb(42, 0, 105);"/>
+  <path d="M307,92L338,147L432,80Z" stroke="#525252" stroke-width="1.51" style="fill: rgb(42, 0, 105);"/>
+  <path d="M296,24L307,92L432,80Z" stroke="#595959" stroke-width="1.51" style="fill: rgb(56, 0, 140);"/>
+  <path d="M305,251L258,301L417,289Z" stroke="#494949" stroke-width="1.51" style="fill: rgb(28, 0, 69);"/>
+  <path d="M-36,-105L147,-87L207,-105Z" stroke="#8b8b8b" stroke-width="1.51" style="fill: rgb(85, 52, 134);"/>
+  <path d="M307,92L272,161L338,147Z" stroke="#535353" stroke-width="1.51" style="fill: rgb(56, 0, 140);"/>
+  <path d="M272,161L305,251L338,147Z" stroke="#4f4f4f" stroke-width="1.51" style="fill: rgb(42, 0, 105);"/>
+  <path d="M296,24L259,114L307,92Z" stroke="#585858" stroke-width="1.51" style="fill: rgb(73, 0, 182);"/>
+  <path d="M259,114L272,161L307,92Z" stroke="#545454" stroke-width="1.51" style="fill: rgb(56, 0, 140);"/>
+  <path d="M213,-31L296,24L309,-78Z" stroke="#707070" stroke-width="1.51" style="fill: rgb(73, 0, 182);"/>
+  <path d="M207,-105L213,-31L309,-78Z" stroke="#7a7a7a" stroke-width="1.51" style="fill: rgb(94, 0, 235);"/>
+  <path d="M272,161L258,301L305,251Z" stroke="#4e4e4e" stroke-width="1.51" style="fill: rgb(42, 0, 105);"/>
+  <path d="M134,195L258,301L272,161Z" stroke="#515151" stroke-width="1.51" style="fill: rgb(56, 0, 140);"/>
+  <path d="M160,27L259,114L296,24Z" stroke="#5f5f5f" stroke-width="1.51" style="fill: rgb(56, 0, 140);"/>
+  <path d="M213,-31L160,27L296,24Z" stroke="#6a6a6a" stroke-width="1.51" style="fill: rgb(94, 0, 235);"/>
+  <path d="M134,195L122,284L258,301Z" stroke="#515151" stroke-width="1.51" style="fill: rgb(56, 0, 140);"/>
+  <path d="M259,114L134,195L272,161Z" stroke="#555555" stroke-width="1.51" style="fill: rgb(73, 0, 182);"/>
+  <path d="M160,27L122,93L259,114Z" stroke="#5c5c5c" stroke-width="1.51" style="fill: rgb(56, 0, 140);"/>
+  <path d="M122,93L134,195L259,114Z" stroke="#585858" stroke-width="1.51" style="fill: rgb(73, 0, 182);"/>
+  <path d="M-36,-105L60,-69L147,-87Z" stroke="#909090" stroke-width="1.51" style="fill: rgb(85, 52, 134);"/>
+  <path d="M207,-105L147,-87L213,-31Z" stroke="#7d7d7d" stroke-width="1.51" style="fill: rgb(135, 55, 255);"/>
+  <path d="M147,-87L160,27L213,-31Z" stroke="#747474" stroke-width="1.51" style="fill: rgb(73, 0, 182);"/>
+  <path d="M43,-25L122,93L160,27Z" stroke="#6e6e6e" stroke-width="1.51" style="fill: rgb(73, 0, 182);"/>
+  <path d="M147,-87L60,-69L160,27Z" stroke="#7c7c7c" stroke-width="1.51" style="fill: rgb(135, 55, 255);"/>
+  <path d="M60,-69L43,-25L160,27Z" stroke="#7d7d7d" stroke-width="1.51" style="fill: rgb(135, 55, 255);"/>
+  <path d="M122,93L46,194L134,195Z" stroke="#5f5f5f" stroke-width="1.51" style="fill: rgb(56, 0, 140);"/>
+  <path d="M46,194L122,284L134,195Z" stroke="#5b5b5b" stroke-width="1.51" style="fill: rgb(73, 0, 182);"/>
+  <path d="M46,194L60,297L122,284Z" stroke="#5d5d5d" stroke-width="1.51" style="fill: rgb(56, 0, 140);"/>
+  <path d="M43,-25L33,100L122,93Z" stroke="#707070" stroke-width="1.51" style="fill: rgb(135, 55, 255);"/>
+  <path d="M33,100L46,194L122,93Z" stroke="#666666" stroke-width="1.51" style="fill: rgb(94, 0, 235);"/>
+  <path d="M-3,-19L33,100L43,-25Z" stroke="#7e7e7e" stroke-width="1.51" style="fill: rgb(49, 31, 75);"/>
+  <path d="M-3,-19L43,-25L60,-69Z" stroke="#898989" stroke-width="1.51" style="fill: rgb(49, 31, 75);"/>
+  <path d="M-36,-105L-3,-19L60,-69Z" stroke="#939393" stroke-width="1.51" style="fill: rgb(85, 52, 134);"/>
+  <path d="M 45.501 194 L -54.499 247 L 59.501 297 L 45.501 194 Z" stroke="#676767" stroke-width="1.51" style="fill: rgb(94, 0, 235);"/>
+  <path d="M -54.999 247 L -114.999 280 L 59.001 297 L -54.999 247 Z" stroke="#6d6d6d" stroke-width="1.51" style="fill: rgb(94, 0, 235);"/>
+  <path d="M-3,-19L-56,103L33,100Z" stroke="#7a7a7a" stroke-width="1.51" style="fill: rgb(85, 52, 134);"/>
+  <path d="M-64,210L-54,247L46,194Z" stroke="#6f6f6f" stroke-width="1.51" style="fill: rgb(94, 0, 235);"/>
+  <path d="M33,100L-56,103L46,194Z" stroke="#6f6f6f" stroke-width="1.51" style="fill: rgb(94, 0, 235);"/>
+  <path d="M-56,103L-64,210L46,194Z" stroke="#717171" stroke-width="1.51" style="fill: rgb(135, 55, 255);"/>
+  <path d="M-99,147L-64,210L-56,103Z" stroke="#7a7a7a" stroke-width="1.51" style="fill: rgb(85, 52, 134);"/>
+  <path d="M-104,89L-56,103L-3,-19Z" stroke="#828282" stroke-width="1.51" style="fill: rgb(85, 52, 134);"/>
+  <path d="M-138,5L-104,89L-3,-19Z" stroke="#8e8e8e" stroke-width="1.51" style="fill: rgb(49, 31, 75);"/>
+  <path d="M-36,-105L-105,-89L-3,-19Z" stroke="#9e9e9e" stroke-width="1.51" style=""/>
+  <path d="M-105,-89L-138,5L-3,-19Z" stroke="#9b9b9b" stroke-width="1.51" style=""/>
+  <path d="M-104,89L-99,147L-56,103Z" stroke="#7f7f7f" stroke-width="1.51" style="fill: rgb(49, 31, 75);"/>
+  <path d="M-64,210L-114,280L-54,247Z" stroke="#757575" stroke-width="1.51" style="fill: rgb(85, 52, 134);"/>
+  <path d="M-99,147L-114,280L-64,210Z" stroke="#797979" stroke-width="1.51" style="fill: rgb(85, 52, 134);"/>
+  <path d="M-104,89L-138,5L-99,147Z" stroke="#868686" stroke-width="1.51" style="fill: rgb(49, 31, 75);"/>
+  <path d="M-138,5L-114,280L-99,147Z" stroke="#828282" stroke-width="1.51" style="fill: rgb(49, 31, 75);"/>
+</svg>
